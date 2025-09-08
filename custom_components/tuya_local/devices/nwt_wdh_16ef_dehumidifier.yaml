@@ -1,0 +1,100 @@
+name: Dehumidifier
+products:
+  - id: 0x17qxc4sl2e4xu2
+    manufacturer: NEW WIDETECH
+    model: WPF-16SW5
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 90
+      - id: 19
+        name: fault
+        type: integer
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: dehumidify
+            value: auto
+          - dps_val: continuous
+            value: boost
+          - dps_val: sleep
+            value: sleep
+      - id: 6
+        name: current_humidity
+        type: integer
+
+  - entity: fan
+    dps:
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 50
+          - dps_val: "high"
+            value: 100
+
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Humidity
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Filter cleaning reminder
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Auto Off
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
